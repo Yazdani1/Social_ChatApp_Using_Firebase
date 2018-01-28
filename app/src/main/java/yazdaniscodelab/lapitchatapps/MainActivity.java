@@ -1,6 +1,7 @@
 package yazdaniscodelab.lapitchatapps;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private ViewPager mpager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Lapit Chat apps");
 
         mAuth=FirebaseAuth.getInstance();
+
+        mpager=findViewById(R.id.view_pager_xml);
 
     }
 
@@ -40,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         if (currentUser==null){
             settomain();
         }
-
-
 
     }
 

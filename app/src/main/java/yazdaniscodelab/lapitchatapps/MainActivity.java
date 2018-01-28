@@ -1,6 +1,7 @@
 package yazdaniscodelab.lapitchatapps;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mpager;
 
+    private TabLayout mTablayout;
+
+    private SectionPagerAdapter sectionPagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth=FirebaseAuth.getInstance();
 
+        mTablayout=findViewById(R.id.main_tabs);
+
         mpager=findViewById(R.id.view_pager_xml);
+
+        sectionPagerAdapter=new SectionPagerAdapter(getSupportFragmentManager());
+
+        mpager.setAdapter(sectionPagerAdapter);
+
+        mTablayout.setupWithViewPager(mpager);
+
+
 
     }
 

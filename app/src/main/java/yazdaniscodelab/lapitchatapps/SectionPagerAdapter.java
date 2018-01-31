@@ -31,6 +31,7 @@ public class SectionPagerAdapter extends FragmentPagerAdapter{
                 ChatsFragment chatsFragment=new ChatsFragment();
                 return chatsFragment;
 
+
                 default:
                     return null;
 
@@ -57,6 +58,7 @@ public class SectionPagerAdapter extends FragmentPagerAdapter{
 
             case 2:
                 return "Chats";
+
 
                 default:
                     return null;

@@ -18,6 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -28,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button creataccountbtn;
 
     private FirebaseAuth mAuth;
+
+    private DatabaseReference mDatabase;
 
     private Toolbar toolbar;
 
@@ -86,18 +93,40 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void registration_User(String displayname,String email,String pass){
+    private void registration_User(final String displayname, String email, String pass){
 
         mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()){
+
+
+                    FirebaseUser mUser=FirebaseAuth.getInstance().getCurrentUser();
+
+                    String uid=mUser.getUid();
+
+                    mDatabase= FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
+                    HashMap<String,String>userMap=new HashMap<>();
+
+                    userMap.put("name",displayname);
+                    userMap.put("status","Hi i am using chat application");
+                    userMap.put("default","default");
+                    userMap.put("thump_image","default");
+
+                    mDatabase.setValue(userMap);
+
+
+
+
                     progressDialog.dismiss();
                     Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
+
+
                 }else {
                     progressDialog.hide();
                     Toast.makeText(getApplicationContext(),"Registration Failed",Toast.LENGTH_LONG).show();

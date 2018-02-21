@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class UsersActivity extends AppCompatActivity {
 
@@ -24,6 +25,21 @@ public class UsersActivity extends AppCompatActivity {
         mUserList.setHasFixedSize(true);
         mUserList.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+
+    public class UserViewHolder extends RecyclerView.ViewHolder{
+
+        View mView;
+
+        public UserViewHolder(View itemView) {
+            super(itemView);
+            mView=itemView;
+        }
+
 
     }
+
+
+
 }

@@ -112,19 +112,24 @@ public class RegisterActivity extends AppCompatActivity {
 
                     userMap.put("name",displayname);
                     userMap.put("status","Hi i am using chat application");
-                    userMap.put("default","default");
+                    userMap.put("image","default");
                     userMap.put("thump_image","default");
 
-                    mDatabase.setValue(userMap);
+                    mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
+                            if (task.isSuccessful()){
+                                progressDialog.dismiss();
+                                Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
 
+                        }
+                    });
 
-
-                    progressDialog.dismiss();
-                    Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
 
 
                 }else {

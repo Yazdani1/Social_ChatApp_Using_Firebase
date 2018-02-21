@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                  break;
 
              case R.id.setting_id:
-
+                 Intent intent=new Intent(getApplicationContext(),SettingsActivity.class);
+                 startActivity(intent);
                  break;
          }
 

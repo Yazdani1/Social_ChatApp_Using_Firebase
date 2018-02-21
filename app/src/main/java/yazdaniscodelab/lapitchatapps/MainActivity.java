@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                  break;
 
              case R.id.alluser_id:
-
+                 Intent nintent=new Intent(getApplicationContext(),UsersActivity.class);
+                 startActivity(nintent);
                  break;
 
              case R.id.setting_id:

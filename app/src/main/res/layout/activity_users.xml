@@ -7,11 +7,11 @@
     tools:context="yazdaniscodelab.lapitchatapps.UsersActivity">
 
     <include layout="@layout/app_bar_layout"
-        android:id="@+id/alluser_layout"/>
+        android:id="@+id/alluser"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_below="@id/alluser_layout"
+        android:layout_below="@id/alluser"
         android:id="@+id/recyclerview_allusers"
         android:layout_height="wrap_content">
 
